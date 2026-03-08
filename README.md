@@ -126,58 +126,6 @@ Key areas covered:
 
 ## Deployment
 
-### Vercel (recommended)
-
-1. Push your repository to GitHub / GitLab / Bitbucket.
-2. Go to [vercel.com](https://vercel.com) → **Add New Project**.
-3. Import the repository — Vercel auto-detects Next.js and sets the correct build command (`next build`) and output directory (`.next`).
-4. Click **Deploy**. No environment variables are required.
-
-Every push to `main` will trigger an automatic re-deploy.
-
-### Self-hosted (Node.js)
-
-```bash
-# Build
-npm run build
-
-# Run the production server
-npm run start
-# Listens on http://localhost:3000 by default
-
-# Change port
-PORT=8080 npm run start
-```
-
-Use a process manager (e.g. [pm2](https://pm2.keymetrics.io/)) to keep the server running:
-
-```bash
-npm install -g pm2
-pm2 start "npm run start" --name pokedex
-pm2 save
-```
-
-### Docker
-
-```dockerfile
-FROM node:20-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build
-
-FROM node:20-alpine AS runner
-WORKDIR /app
-ENV NODE_ENV=production
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/public ./public
-EXPOSE 3000
-CMD ["node", "server.js"]
-```
-
-> **Note**: add `output: "standalone"` to `next.config.ts` when using the Docker approach.
 
 ## Design decisions
 
