@@ -1,0 +1,48 @@
+export const typeColors: Record<string, { bg: string; text: string; border: string }> = {
+  normal: { bg: "bg-gray-400", text: "text-gray-800", border: "border-gray-500" },
+  fire: { bg: "bg-orange-500", text: "text-white", border: "border-orange-600" },
+  water: { bg: "bg-blue-500", text: "text-white", border: "border-blue-600" },
+  grass: { bg: "bg-green-500", text: "text-white", border: "border-green-600" },
+  electric: { bg: "bg-yellow-400", text: "text-yellow-900", border: "border-yellow-500" },
+  ice: { bg: "bg-cyan-300", text: "text-cyan-900", border: "border-cyan-400" },
+  fighting: { bg: "bg-red-700", text: "text-white", border: "border-red-800" },
+  poison: { bg: "bg-purple-500", text: "text-white", border: "border-purple-600" },
+  ground: { bg: "bg-amber-600", text: "text-white", border: "border-amber-700" },
+  flying: { bg: "bg-indigo-400", text: "text-white", border: "border-indigo-500" },
+  psychic: { bg: "bg-pink-500", text: "text-white", border: "border-pink-600" },
+  bug: { bg: "bg-lime-500", text: "text-white", border: "border-lime-600" },
+  rock: { bg: "bg-stone-500", text: "text-white", border: "border-stone-600" },
+  ghost: { bg: "bg-violet-700", text: "text-white", border: "border-violet-800" },
+  dark: { bg: "bg-neutral-700", text: "text-white", border: "border-neutral-800" },
+  dragon: { bg: "bg-blue-700", text: "text-white", border: "border-blue-800" },
+  steel: { bg: "bg-slate-400", text: "text-slate-900", border: "border-slate-500" },
+  fairy: { bg: "bg-pink-300", text: "text-pink-900", border: "border-pink-400" },
+  stellar: { bg: "bg-teal-500", text: "text-white", border: "border-teal-600" },
+  unknown: { bg: "bg-gray-300", text: "text-gray-700", border: "border-gray-400" },
+};
+
+export const getTypeColors = (type: string) =>
+  typeColors[type] ?? { bg: "bg-gray-400", text: "text-white", border: "border-gray-500" };
+
+export const typeHexColors: Record<string, string> = {
+  normal: "#A8A878",
+  fire: "#F08030",
+  water: "#6890F0",
+  grass: "#78C850",
+  electric: "#F8D030",
+  ice: "#98D8D8",
+  fighting: "#C03028",
+  poison: "#A040A0",
+  ground: "#E0C068",
+  flying: "#A890F0",
+  psychic: "#F85888",
+  bug: "#A8B820",
+  rock: "#B8A038",
+  ghost: "#705898",
+  dark: "#705848",
+  dragon: "#7038F8",
+  steel: "#B8B8D0",
+  fairy: "#EE99AC",
+  stellar: "#14B8A6",
+  unknown: "#9CA3AF",
+};
