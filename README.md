@@ -10,6 +10,7 @@ A Next.js application that consumes the [PokeAPI](https://pokeapi.co/) to let us
 - **Pagination** — results are paginated at 25 per page when there are more than 25 Pokémon
 - **Pokémon detail** — artwork, height/weight/base experience, abilities, sprites, and animated stat bars
 - **Dark mode** — respects the OS preference via Tailwind's `dark:` classes
+- **Loading skeletons** — every route shows an animated skeleton while server data is being fetched
 
 ## Tech stack
 
@@ -28,12 +29,15 @@ src/
 ├── app/
 │   ├── layout.tsx              # Root layout
 │   ├── page.tsx                # Home — type list (server component)
+│   ├── loading.tsx             # Skeleton loader for home page
 │   ├── not-found.tsx           # 404 page
 │   ├── type/[slug]/
 │   │   ├── page.tsx            # Server component: fetches all Pokémon for the type
+│   │   ├── loading.tsx         # Skeleton loader for type page
 │   │   └── PokemonList.tsx     # Client component: search + pagination
 │   └── pokemon/[name]/
-│       └── page.tsx            # Pokémon detail (server component)
+│       ├── page.tsx            # Pokémon detail (server component)
+│       └── loading.tsx         # Skeleton loader for detail page
 ├── components/
 │   ├── BackButton.tsx          # Client-side back navigation
 │   ├── PokemonCard.tsx         # Card with sprite, number, name, type badges
