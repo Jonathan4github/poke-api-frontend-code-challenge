@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { Pokemon, PokemonType, TypeListResponse } from "@/types/pokemon";
 
-const pokeApi = axios.create({
+export const pokeApi = axios.create({
   baseURL: "https://pokeapi.co/api/v2",
   timeout: 10000,
 });

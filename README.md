@@ -21,6 +21,7 @@ A Next.js application that consumes the [PokeAPI](https://pokeapi.co/) to let us
 | HTTP client | [Axios](https://axios-http.com/) |
 | Styling | [Tailwind CSS v4](https://tailwindcss.com/) |
 | Images | `next/image` with remote patterns for PokeAPI sprites |
+| Unit testing | [Jest](https://jestjs.io/) + [React Testing Library](https://testing-library.com/) |
 
 ## Project structure
 
@@ -52,6 +53,23 @@ src/
     └── pokemon.ts              # TypeScript interfaces for PokeAPI responses
 ```
 
+### Test structure
+
+```
+src/
+├── lib/__tests__/
+│   ├── typeColors.test.ts      # getTypeColors fallback + hex colour validity
+│   └── api.test.ts             # fetchAllTypes / fetchType / fetchPokemon (mocked)
+├── components/__tests__/
+│   ├── StatBar.test.tsx        # Label mapping, width %, colour classes, cap logic
+│   ├── TypeBadge.test.tsx      # span vs link rendering, colour classes
+│   ├── Pagination.test.tsx     # Ellipsis logic, disabled states, click handlers
+│   └── BackButton.test.tsx     # Label prop, router.back() on click
+└── app/type/[slug]/__tests__/
+    └── PokemonList.test.tsx    # Search filter, case-insensitivity, page reset,
+                                # empty state, pagination visibility, count text
+```
+
 ## Local development
 
 ### Prerequisites
@@ -80,10 +98,31 @@ The dev server uses Turbopack for fast HMR. No `.env` file is required — the a
 ### Other scripts
 
 ```bash
-npm run build   # Production build
-npm run start   # Start the production server (after build)
-npm run lint    # ESLint
+npm run build          # Production build
+npm run start          # Start the production server (after build)
+npm run lint           # ESLint
+npm test               # Run unit tests
+npm run test:watch     # Run tests in watch mode
+npm run test:coverage  # Run tests with coverage report
 ```
+
+## Testing
+
+The project uses **Jest** and **React Testing Library** for unit tests. 52 tests cover the core logic and components.
+
+```bash
+npm test
+```
+
+Key areas covered:
+
+- **API helpers** (`fetchAllTypes`, `fetchType`, `fetchPokemon`) — success and error paths via `axios-mock-adapter`
+- **Type colour utilities** — known types, fallback for unknown types, hex colour format validation
+- **StatBar** — stat label mapping, percentage width calculation, colour class selection, 100% cap
+- **TypeBadge** — conditional link vs span rendering, type-specific colour classes
+- **Pagination** — page range / ellipsis algorithm, disabled states, `aria-current`, click callbacks
+- **BackButton** — label prop, `router.back()` called on click
+- **PokemonList** — search filtering, case-insensitivity, page reset on search, empty state, pagination visibility
 
 ## Deployment
 
